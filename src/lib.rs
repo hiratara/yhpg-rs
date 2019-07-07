@@ -36,13 +36,17 @@ impl Dice {
         self.east();
         self.east();
     }
+
+    pub fn up(&self) -> char {
+        (self.up + 48) as u8 as char
+    }
 }
 
 pub fn solve(input: &str) -> String {
     let mut result = String::new();
 
     let mut dice = Dice::new();
-    result.push_str(&format!("{}", dice.up));
+    result.push(dice.up());
     for c in input.chars() {
         match c {
             'N' => dice.north(),
@@ -51,7 +55,7 @@ pub fn solve(input: &str) -> String {
             'W' => dice.west(),
             _ => unimplemented!(),
         };
-        result.push_str(&format!("{}", dice.up));
+        result.push(dice.up());
     }
 
     result
